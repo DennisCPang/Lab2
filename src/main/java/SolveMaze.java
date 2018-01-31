@@ -1,5 +1,7 @@
 import edu.illinois.cs.cs125.lib.mazemaker.Maze;
 
+import java.util.Random;
+
 /**
  * Solve a randomly-generated maze.
  *
@@ -9,7 +11,6 @@ import edu.illinois.cs.cs125.lib.mazemaker.Maze;
  */
 @SuppressWarnings("checkstyle:emptyblock")
 public class SolveMaze {
-
     /**
      * Implement your maze solving algorithm in the main method below.
      *
@@ -21,6 +22,9 @@ public class SolveMaze {
          * Create a new 10 x 10 maze. Feel free to change these values.
          */
         Maze maze = new Maze(10, 10);
+
+        Random r = new Random();
+
 
         /*
          * Pick (0, 0), the bottom left corner, as the starting point.
@@ -34,7 +38,15 @@ public class SolveMaze {
          * Feel free to adjust this number if you experiment with other mazes.
          */
         for (int step = 0; step < 1000; step++) {
-            // Implement your maze solving algorithm here
+            while(maze.canMove()){
+               maze.move();
+           }
+            if(r.nextInt(2) == 1){
+                maze.turnLeft();
+            }
+            if(r.nextInt(2) == 2){
+                maze.turnRight();
+            }
         }
 
         if (maze.isFinished()) {
